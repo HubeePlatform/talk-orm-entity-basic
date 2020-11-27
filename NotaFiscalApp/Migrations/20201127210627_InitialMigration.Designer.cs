@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NotaFiscalApp.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20201127152549_InitialMigration")]
+    [Migration("20201127210627_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,7 +67,7 @@ namespace NotaFiscalApp.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("NotasFiscais");
+                    b.ToTable("NotaFiscal");
                 });
 
             modelBuilder.Entity("NotaFiscalApp.Entidades.NotaFiscal.NotaFiscalItem", b =>
@@ -138,7 +138,7 @@ namespace NotaFiscalApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("ProdutoTag", b =>

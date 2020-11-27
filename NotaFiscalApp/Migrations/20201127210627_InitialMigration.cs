@@ -40,7 +40,7 @@ namespace NotaFiscalApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
+                name: "Tag",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -51,11 +51,11 @@ namespace NotaFiscalApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
+                    table.PrimaryKey("PK_Tag", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "NotasFiscais",
+                name: "NotaFiscal",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -67,9 +67,9 @@ namespace NotaFiscalApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NotasFiscais", x => x.Id);
+                    table.PrimaryKey("PK_NotaFiscal", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_NotasFiscais_Cliente_ClienteId",
+                        name: "FK_NotaFiscal_Cliente_ClienteId",
                         column: x => x.ClienteId,
                         principalTable: "Cliente",
                         principalColumn: "Id",
@@ -93,9 +93,9 @@ namespace NotaFiscalApp.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProdutoTag_Tags_TagsId",
+                        name: "FK_ProdutoTag_Tag_TagsId",
                         column: x => x.TagsId,
-                        principalTable: "Tags",
+                        principalTable: "Tag",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -113,9 +113,9 @@ namespace NotaFiscalApp.Migrations
                 {
                     table.PrimaryKey("PK_NotaFiscalItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_NotaFiscalItem_NotasFiscais_NotaFiscalId",
+                        name: "FK_NotaFiscalItem_NotaFiscal_NotaFiscalId",
                         column: x => x.NotaFiscalId,
-                        principalTable: "NotasFiscais",
+                        principalTable: "NotaFiscal",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -127,6 +127,11 @@ namespace NotaFiscalApp.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_NotaFiscal_ClienteId",
+                table: "NotaFiscal",
+                column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_NotaFiscalItem_NotaFiscalId",
                 table: "NotaFiscalItem",
                 column: "NotaFiscalId");
@@ -135,11 +140,6 @@ namespace NotaFiscalApp.Migrations
                 name: "IX_NotaFiscalItem_ProdutoId",
                 table: "NotaFiscalItem",
                 column: "ProdutoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_NotasFiscais_ClienteId",
-                table: "NotasFiscais",
-                column: "ClienteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProdutoTag_TagsId",
@@ -156,13 +156,13 @@ namespace NotaFiscalApp.Migrations
                 name: "ProdutoTag");
 
             migrationBuilder.DropTable(
-                name: "NotasFiscais");
+                name: "NotaFiscal");
 
             migrationBuilder.DropTable(
                 name: "Produto");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Tag");
 
             migrationBuilder.DropTable(
                 name: "Cliente");

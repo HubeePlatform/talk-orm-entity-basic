@@ -21,9 +21,30 @@ namespace NotaFiscalApp
             //Ordenação
             //Skip take
 
+            var tagDao = new BaseDao<Tag>();
 
-            var produtoDao = new BaseDao<Produto>();
-            Console.WriteLine("Salvo!");
+            tagDao.IniciarTransacao();
+
+
+            var tag = new Tag() { Nome = "Genérico" };
+            tagDao.CriarOuAlterar(tag);
+            tagDao.SalvarAlteracoes();
+            tagDao.Commit();
+
+            var firstTag = tagDao.Query().FirstOrDefault();
+            Console.WriteLine("Nome cadastrado: " + firstTag.Nome);
+
+            tag.Nome = "Genérico alterado";
+            tagDao.CriarOuAlterar(tag);
+            tagDao.SalvarAlteracoes();
+
+            firstTag = tagDao.Query().FirstOrDefault();
+            Console.WriteLine("Nome alterado: " + firstTag.Nome);
+
+            tagDao.Excluir(tag);
+            firstTag = tagDao.Query().FirstOrDefault();
+            Console.WriteLine("Tag apagada: " + firstTag is null);
+
             Console.ReadKey();
         }
     }

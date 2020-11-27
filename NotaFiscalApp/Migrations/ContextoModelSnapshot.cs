@@ -65,7 +65,7 @@ namespace NotaFiscalApp.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("NotasFiscais");
+                    b.ToTable("NotaFiscal");
                 });
 
             modelBuilder.Entity("NotaFiscalApp.Entidades.NotaFiscal.NotaFiscalItem", b =>
@@ -136,7 +136,7 @@ namespace NotaFiscalApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("ProdutoTag", b =>
